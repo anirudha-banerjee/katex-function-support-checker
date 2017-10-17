@@ -1,0 +1,1 @@
+# katex-function-support-checker

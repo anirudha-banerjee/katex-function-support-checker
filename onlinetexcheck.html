@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Online Tex Check</title>
+      <link rel="shortcut icon"
+      href="https://www.wonderslate.com/assets/app-icon-4x-42ce1c3e7bf1d4b8b57f2e1516dac64f.png" />
+
+      <!-- Provide list of keywords -->
+      <meta name = "keywords" content = "tex, latex, katex">
+
+      <!-- Provide description of the page -->
+      <meta name = "description" content = "Latex Support Check In Katex">
+
+      <!-- Author information -->
+      <meta name = "author" content = "godslayer69">
+
+      <!-- Page content type -->
+      <meta http-equiv = "content-type" content = "text/html; charset = UTF-8">
+
+      <!-- Tag to tell robots not to index the content of a page -->
+      <meta name = "robots" content = "noindex, nofollow">
+
+      <!-- Link  To Katex Files -->
+      <link rel="stylesheet" type="text/css" href="assets/katex/katex.min.css">
+      <script type="text/javascript" src="assets/katex/katex.min.js"></script>
+      <script type="text/javascript" src="assets/katex/contrib/auto-render.min.js"></script>
+      <style type='text/css'>body {margin: 0px;padding: 20px;font-size:16pxcolor:#000000; } </style>
+
+   </head>
+
+   <body>
+     <h3>Check Formulae Supported By Katex Library</h3>
+
+         Input Formulae/Symbols:
+            <input type = "text" id="tex_input" />
+            <br />
+            <br />
+            <button type = "submit" id="submit_btn">Submit</button>
+            <br />
+            <p>................................</p>
+
+         Output:
+      <br />
+      <br />
+      <h5>Rendered Formula:</h5>
+      <p><span id="mykatex1">Latex Conversion</span></p>
+      <script>
+      </script>
+        <br />
+        <p>................................</p>
+
+        <div id="katexerror">
+        </div>
+        <br />
+      <p><h5>Below Are Links To Katex Libraries And Support Documents</h5></p>
+      <a href = "https://khan.github.io/KaTeX/" target = "_blank">Katex</a> |
+      <a href = "https://github.com/Khan/KaTeX" target = "_blank">Katex Github</a> |
+      <a href = "https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX" target = "_blank">Katex Function Support</a> |
+        <a href = "http://tiddlywiki.com/plugins/tiddlywiki/katex/" target = "_blank">Katex Demo</a>
+        <br />
+        <br />
+        <p><h6>Powered By  <img src = "assets/logo.jpg" alt = "Logo" /></p>
+
+          <script>
+          try {
+            var textInput = document.getElementById('tex_input');
+            var submitBtn = document.getElementById('submit_btn');
+            submitBtn.addEventListener('click', renderFormula);
+            function renderFormula() {
+                katex.render(textInput.value, mykatex1);
+              }
+          } catch (e) {
+            document.getElementById(katexerror).innerHTML=e.message;
+          }
+          </script>
+   </body>
+
+</html>
