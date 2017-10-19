@@ -2,15 +2,16 @@
 <html>
 
    <head>
-      <title>Online Tex Check</title>
-      <link rel="shortcut icon"
-      href="https://www.wonderslate.com/assets/app-icon-4x-42ce1c3e7bf1d4b8b57f2e1516dac64f.png" />
+      <title>Online Tex Checker</title>
+      <link rel="shortcut icon" href="https://www.wonderslate.com/assets/app-icon-4x-42ce1c3e7bf1d4b8b57f2e1516dac64f.png" />
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
       <!-- Provide list of keywords -->
       <meta name = "keywords" content = "tex, latex, katex">
 
       <!-- Provide description of the page -->
-      <meta name = "description" content = "Latex Support Check In Katex">
+      <meta name = "description" content = "Latex Support Checker For Katex">
 
       <!-- Author information -->
       <meta name = "author" content = "godslayer69">
@@ -25,7 +26,27 @@
       <link rel="stylesheet" type="text/css" href="assets/katex/katex.min.css">
       <script type="text/javascript" src="assets/katex/katex.min.js"></script>
       <script type="text/javascript" src="assets/katex/contrib/auto-render.min.js"></script>
-      <style type='text/css'>body {margin: 0px;padding: 20px;font-size:16pxcolor:#000000; } </style>
+      <style type='text/css'>
+      body {margin: 0px;padding: 20px;font-size:18pxcolor:#000000; }
+      button {
+        padding: 15px 25px;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: #fff;
+        backgound-color: #F05A2A;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+      }
+
+      button:active {
+        background-color: #F05A2A;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+      </style>
 
    </head>
 
@@ -42,12 +63,10 @@
 
          Output:
       <br />
-      <br />
       <h5>Rendered Formula:</h5>
       <p><span id="mykatex1">Latex Conversion</span></p>
       <script>
       </script>
-        <br />
         <p>................................</p>
 
         <div id="katexerror">
@@ -60,7 +79,7 @@
         <a href = "http://tiddlywiki.com/plugins/tiddlywiki/katex/" target = "_blank">Katex Demo</a>
         <br />
         <br />
-        <p><h6>Powered By  <img src = "assets/logo.jpg" alt = "Logo" /></p>
+        <p><h4>Made With <i class="fa fa-heartbeat" style="color:red;"></i> By <img src = "assets/logo.jpg" alt = "Logo" height="30" width="30" style="vertical-align: middle;"/></p>
 
           <script>
           try {
@@ -71,7 +90,7 @@
                 katex.render(textInput.value, mykatex1);
               }
           } catch (e) {
-            document.getElementById(katexerror).innerHTML=e.message;
+            document.getElementById(katexerror).innerTEXT=e.message;
           }
           </script>
    </body>
