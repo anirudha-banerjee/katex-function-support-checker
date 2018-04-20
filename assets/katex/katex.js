@@ -3956,7 +3956,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
+$export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
@@ -9181,6 +9181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * given.
  */
 var render = function render(expression, baseNode, options) {
+	console.log("katex expression: " + expression);
     __WEBPACK_IMPORTED_MODULE_4__src_utils__["a" /* default */].clearNode(baseNode);
     var node = renderToDomTree(expression, options).toNode();
     baseNode.appendChild(node);

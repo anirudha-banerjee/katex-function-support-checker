@@ -192,6 +192,7 @@ var splitWithDelimiters = function splitWithDelimiters(text, delimiters) {
 var renderMathInText = function renderMathInText(text, optionsCopy) {
     var data = splitWithDelimiters(text, optionsCopy.delimiters);
     var fragment = document.createDocumentFragment();
+		console.log("text: " + text);
 
     for (var i = 0; i < data.length; i++) {
         if (data[i].type === "text") {
@@ -199,6 +200,7 @@ var renderMathInText = function renderMathInText(text, optionsCopy) {
         } else {
             var span = document.createElement("span");
             var math = data[i].data;
+						console.log("math: " + math);
             // Override any display mode defined in the settings with that
             // defined by the text itself
             optionsCopy.displayMode = data[i].display;
@@ -345,7 +347,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
+$export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
