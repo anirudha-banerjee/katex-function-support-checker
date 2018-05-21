@@ -27,7 +27,7 @@
       <script type="text/javascript" src="assets/katex/katex.min.js"></script>
       <script type="text/javascript" src="assets/katex/contrib/auto-render.min.js"></script>
       <style type='text/css'>
-      body {margin: 0px;padding: 20px;font-size:18pxcolor:#000000; }
+      body {margin: 0px;padding: 20px;font-size:18px;color:#000000; }
       button {
         padding: 15px 25px;
         font-size: 16px;
@@ -46,32 +46,16 @@
         box-shadow: 0 5px #666;
         transform: translateY(4px);
       }
-      </style>
 
-      <!-- Start of Async Drift Code -->
-<script>
-!function() {
-  var t;
-  if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0,
-  t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
-  t.factory = function(e) {
-    return function() {
-      var n;
-      return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
-    };
-  }, t.methods.forEach(function(e) {
-    t[e] = t.factory(e);
-  }), t.load = function(t) {
-    var e, n, o, i;
-    e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"),
-    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js",
-    n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
-  });
-}();
-drift.SNIPPET_VERSION = '0.3.1';
-drift.load('nwiuy8u6z7ek');
-</script>
-<!-- End of Async Drift Code -->
+      input{
+        background-color:white;
+        border: solid 1px #000000;
+        border-radius: 4px;
+        padding: 4px;
+        font-size: 18px;
+        color: #000000;
+      }
+      </style>
 
    </head>
 
@@ -79,7 +63,7 @@ drift.load('nwiuy8u6z7ek');
      <h3>Check Formulae Supported By Katex Library</h3>
 
          Input Formulae/Symbols:
-            <input type = "text" id="tex_input" />
+            <input type = "text" id="tex_input"/>
             <br />
             <br />
             <button type = "submit" id="submit_btn">Submit</button>
