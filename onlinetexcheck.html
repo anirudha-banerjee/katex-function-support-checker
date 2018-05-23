@@ -78,7 +78,8 @@
       </script>
         <p>................................</p>
 
-        <div id="katexerror">
+        <div id="katexerror" style="color:#D32F2F;">
+
         </div>
         <br />
       <p><h5>Below Are Links To Katex Libraries And Support Documents</h5></p>
@@ -88,18 +89,32 @@
         <a href = "http://tiddlywiki.com/plugins/tiddlywiki/katex/" target = "_blank">Katex Demo</a>
         <br />
         <br />
-        <p><h4>Made With <i class="fa fa-heartbeat" style="color:red;"></i> By <img src = "assets/logo.jpg" alt = "Logo" height="30" width="30" style="vertical-align: middle;"/></p>
+        <p><h4>Made With <i class="fa fa-heartbeat" style="color:red;"></i> By <a href="https://www.wonderslate.com"><img src = "assets/logo.jpg" alt = "Logo" height="30" width="30" style="vertical-align: middle;"/></a></p>
 
           <script>
           try {
             var textInput = document.getElementById('tex_input');
             var submitBtn = document.getElementById('submit_btn');
             submitBtn.addEventListener('click', renderFormula);
-            function renderFormula() {
-                katex.render(textInput.value, mykatex1);
+            textInput.addEventListener("keyup", function(event) {
+              event.preventDefault();
+              // Number 13 is the "Enter" key on the keyboard
+              if (event.keyCode == 13) {
+                // Trigger the button element with a click
+                submitBtn.click();
               }
+            });
+            function renderFormula() {
+              try {
+                katex.render(textInput.value, mykatex1);
+                document.getElementById("katexerror").innerHTML = "";
+              } catch (e) {
+                document.getElementById("katexerror").innerHTML = e.message;
+              }
+              }
+
           } catch (e) {
-            document.getElementById(katexerror).innerTEXT=e.message;
+            document.getElementById("katexerror").innerHTML = "HTML ERROR: " + e.message;
           }
           </script>
    </body>

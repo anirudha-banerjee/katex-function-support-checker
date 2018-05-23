@@ -9181,7 +9181,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * given.
  */
 var render = function render(expression, baseNode, options) {
-	console.log("katex expression: " + expression);
     __WEBPACK_IMPORTED_MODULE_4__src_utils__["a" /* default */].clearNode(baseNode);
     var node = renderToDomTree(expression, options).toNode();
     baseNode.appendChild(node);
