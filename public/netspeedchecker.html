@@ -57,30 +57,95 @@
 }
 </style>
 </head>
+<style media="screen">
+    body { background:url('assets/castle_in_the_sky_by_aenami-dafny6u.png'), no-repeat;background-size:cover; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+    #netDetails { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+    #netDetails h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+    #netDetails h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+    #netDetails p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+    #netDetails a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+    #netDetails, #netDetails a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+    #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+    /* Set the size of the div element that contains the map */
+    #map {
+        height: 400px;  /* The height is 400 pixels */
+        max-width: 360px;  /* The width is the width of the web page */
+        margin: 100px auto 16px;
+       }
+    @media (max-width: 600px) {
+      body, #netDetails { margin-top: 0; box-shadow: none; }
+      body { border-top: 16px solid #ffa100; }
+    }
+  </style>
+
 <body onload="myFunction()" style="margin:0;">
 
 <div id="loader">
   <h2>Loading, Please Wait...</h2>
 </div>
 
-<div style="display:none;" id="myDiv" class="animate-bottom">
-  <h2>Tada!</h2>
-  <p>Some text in my newly loaded page..</p>
-  <a ping="https://www.w3schools.com/trackpings"> 
-</div>
+<div id="netDetails" style="display:none;" class="animate-bottom">
+    <h2>Connection Status:</h2>
+    <label id="connectionStatus"></label>
+    <br></br>
+    <h2>Location:</h2>
+    <label id="userDetails"></label>
+  </div>
+<div id="map" style="display:none;" class="animate-bottom"></div>
 
 <script>
 var myVar;
 
 function myFunction() {
-  myVar = setTimeout(checkLatency, 5000);
+  myVar = setTimeout(checkLatency, 3000);
 }
 
 function checkLatency() {
   document.getElementById("loader").style.display = "none";
-  document.getElementById("myDiv").style.display = "block";
+  checkConnection();
 }
 </script>
+
+<script>
+  function checkConnection() {
+        if(navigator.onLine) {
+          status = 'Online';
+          getLocation();
+        } else {
+          status = 'Offline';
+        }
+        console.log(status);
+        document.getElementById("netDetails").style.display = "block";
+        document.getElementById('connectionStatus').innerHTML = status;
+        document.getElementById("map").style.display = "block";
+    }
+
+  function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    document.getElementById('userDetails').innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  document.getElementById('userDetails').innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+
+  var latlon = {lat: position.coords.latitude, lng: position.coords.longitude};
+
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: latlon});
+
+  var marker = new google.maps.Marker({position: latlon, map: map});
+}
+
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjNAh37jelJd_B5Rpb4KI2jySS0Eyk2HU&callback=showPosition">
+    </script>
+
 
 </body>
 </html>
