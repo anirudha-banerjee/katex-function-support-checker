@@ -18,6 +18,36 @@
         body, #message { margin-top: 0; box-shadow: none; }
         body { border-top: 16px solid #ffa100; }
       }
+      .topleft {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        top: 15px;
+        left: 30px;
+        font-size: 0px;
+        display: inline-block; 
+        padding: 16px; 
+        border-radius: 4px;
+        background: white;
+        /* Standard syntax */
+        transition-property: width;
+        transition-duration: 1.5s;
+        @include hideTapHighlightColor();
+        @include hardwareAccel();
+        @include improveAntiAlias();
+      }
+      .topleft:hover {
+        width: 200px;
+        font-size: 20px;
+        font-family: Helvetica;
+        color: #039be5;
+        text-align: center;  
+      }
+      img {
+        margin-right: 15px;
+        border-color: transparent;
+        border-radius: 50%;
+      }
     </style>
   </head>
   <body>
@@ -31,11 +61,12 @@
       <br></br>
       <a target="_blank" href="https://github.com/anirudha-banerjee">Check my projects</a>
       <br></br>
-      <a target="_blank" href="blog/">Ramblings</a>
-      <br></br>
-      <a target="_blank" href="https://about.me/anirudha_banerjee">Meet me</a>
-      <br></br>
       <a target="_blank" href="mailto:saheb.dgp89@gmail.com?Subject=Hello%20again">Mail me</a>
+    </div>
+    <div class="topleft">
+        <a href="blog/" target="_blank">
+          <img src="assets/sissyphus.jpg" alt="Avatar" style="width:45px" align="middle"><font color="#039be5">Sissyphus</font>
+      </a>
     </div>
   </body>
 </html>
