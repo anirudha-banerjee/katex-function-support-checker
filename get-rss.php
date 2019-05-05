@@ -5,8 +5,7 @@ $q=$_GET["q"];
 
 //find out which feed was selected
 if($q=="Google") {
-    $xml=('http://techcrunch.com/feed/');
-  $xml1=("https://news.google.com/news?ned=us&topic=h&output=rss");
+  $xml=("https://news.google.com/news?ned=us&topic=h&output=rss");
 } elseif($q=="ZDN") {
   $xml=("https://www.zdnet.com/news/rss.xml");
 }
