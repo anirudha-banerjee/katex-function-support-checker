@@ -1,8 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        function showRSS(str) {
+          if (str.length==0) {
+            document.getElementsByClassName("topright").innerHTML="";
+            return;
+          }
+          if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+          } else {  // code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          xmlhttp.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+              document.getElementById("rssOutput").innerHTML=this.responseText;
+            }
+          }
+          xmlhttp.open("GET","getrss.php?q="+str,true);
+          xmlhttp.withCredentials = true;
+          xmlhttp.send();
+        }
+        </script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sissyphus69</title>
 
     <style media="screen">
@@ -36,6 +58,21 @@
         @include hardwareAccel();
         @include improveAntiAlias();
       }
+      .topright {
+        width: 500px;
+        height: 350px;
+        position: absolute;
+        top: 15px;
+        right: 30px;
+        display: inline-block; 
+        padding: 16px; 
+        border-radius: 4px;
+        background: white;
+        font-size: 20px;
+        font-family: Helvetica;
+        color: #039be5;
+        text-align: center;  
+      }
       .topleft:hover {
         width: 200px;
         font-size: 20px;
@@ -50,7 +87,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="showRSS('Google')">
     <div id="message">
       <h2>Welcome One, Welcome All</h2>
       <h1>The Absurd World Of Sissyphus</h1>
@@ -68,5 +105,9 @@
           <img src="assets/sissyphus.jpg" alt="Avatar" style="width:45px" align="middle"><font color="#039be5">Sissyphus</font>
       </a>
     </div>
+    <div class="topright">
+
+    </div>      
+  </div>
   </body>
 </html>
