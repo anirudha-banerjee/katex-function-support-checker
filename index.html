@@ -23,7 +23,7 @@
               document.getElementById("rssOutput").innerHTML=this.responseText;
             }
             else{
-              console.log("feed status response: " + this.status);
+              console.log("feed status response: " + this.status + " " + this.responseText);
               document.getElementById("rssOutput").innerHTML="RSS Feed Not Found &#9785";
             }
           }
