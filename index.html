@@ -27,7 +27,7 @@
               document.getElementById("rssOutput").innerHTML="RSS Feed Not Found &#9785";
             }
           }
-          xmlhttp.open("GET","https://news.google.com/news?ned=us&topic=h&output=rss",true);
+          xmlhttp.open("GET","getrss.php?q="+str,true);
           xmlhttp.withCredentials = true;
           xmlhttp.send();
         }
