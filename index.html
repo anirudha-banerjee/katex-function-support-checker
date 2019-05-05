@@ -8,7 +8,7 @@
     <script>
         function showRSS(str) {
           if (str.length==0) {
-            document.getElementById("rssfeeds").innerHTML="";
+            document.getElementById("rssOutput").innerHTML="";
             return;
           }
           if (window.XMLHttpRequest) {
@@ -20,11 +20,11 @@
           xmlhttp.onreadystatechange=function() {
             if (this.readyState==4 && this.status==200) {
               console.log("feed response: " + this.responseXML);
-              document.getElementById("rssfeeds").innerHTML=this.responseXML;
+              document.getElementById("rssOutput").innerHTML=this.responseXML;
             }
             else{
               console.log("feed status response: " + this.status);
-              document.getElementById("rssfeeds").innerHTML="RSS Feed Not Found &#9785";
+              document.getElementById("rssOutput").innerHTML="RSS Feed Not Found &#9785";
             }
           }
           xmlhttp.open("GET","getrss.php?q="+str,true);
@@ -107,9 +107,7 @@
           <img src="assets/sissyphus.jpg" alt="Avatar" style="width:45px" align="middle"><font color="#039be5">Sissyphus</font>
       </a>
     </div>
-    <div class="topright" id="rssfeeds">
-      
-    </div>      
+    <div class="topright" id="rssOutput">RSS-feed will be listed here...</div>      
   </div>
   </body>
 </html>
