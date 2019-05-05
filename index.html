@@ -5,7 +5,7 @@
     <script>
         function showRSS(str) {
           if (str.length==0) {
-            document.getElementsByClassName("topright").innerHTML="";
+            document.getElementsById("rssfeeds").innerHTML="";
             return;
           }
           if (window.XMLHttpRequest) {
@@ -16,7 +16,7 @@
           }
           xmlhttp.onreadystatechange=function() {
             if (this.readyState==4 && this.status==200) {
-              document.getElementById("topright").innerHTML=this.responseText;
+              document.getElementById("rssfeeds").innerHTML=this.responseText;
             }
           }
           xmlhttp.open("GET","getrss.php?q="+str,true);
@@ -105,8 +105,8 @@
           <img src="assets/sissyphus.jpg" alt="Avatar" style="width:45px" align="middle"><font color="#039be5">Sissyphus</font>
       </a>
     </div>
-    <div class="topright">
-
+    <div class="topright" id="rssfeeds">
+      
     </div>      
   </div>
   </body>
