@@ -1,5 +1,6 @@
 
 <?php
+header('Access-Control-Allow-Origin: *');
 //get the q parameter from URL
 $q=$_GET["q"];
 
