@@ -27,7 +27,7 @@
               document.getElementById("rssOutput").innerHTML="RSS Feed Not Found &#9785";
             }
           }
-          xmlhttp.open("GET","php/get-rss.php?q="+str,true);
+          xmlhttp.open("GET","getrss.php?q="+str,true);
           xmlhttp.withCredentials = true;
           xmlhttp.send();
         }
@@ -89,7 +89,7 @@
       }
     </style>
   </head>
-  <body onload="showRSS('ZDN')">
+  <body onload="showRSS('Google')">
     <div id="message">
       <h2>Welcome One, Welcome All</h2>
       <h1>The Absurd World Of Sissyphus</h1>
