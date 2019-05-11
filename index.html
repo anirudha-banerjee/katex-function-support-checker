@@ -10,13 +10,24 @@
     function showRSS() {
       var feedUrl = "https://news.google.com/news?ned=us&topic=h&output=rss";
 
-      $.ajax(feedUrl, {
+      $.ajax({
+
+        type: "GET",
+
+        url: feedUrl,
 
         accepts: {
 
           xml: "application/rss+xml"
 
         },
+
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "origin, content-type, accept"
+        },
+
+        processData: true,
 
         dataType: "xml",
 
@@ -38,8 +49,8 @@
 
             console.log("description: " + el.find("description").text());
 
-            document.getElementById("rssOutputText").innerText="Title: " + el.find("title").text();
-            document.getElementById("rssOutputDesc").innerText="Description: " + el.find("description").text();
+            document.getElementById("rssOutputText").innerText = "Title: " + el.find("title").text();
+            document.getElementById("rssOutputDesc").innerText = "Description: " + el.find("description").text();
 
           });
 
