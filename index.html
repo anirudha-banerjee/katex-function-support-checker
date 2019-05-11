@@ -10,6 +10,8 @@
     function showRSS() {
       var feedUrl = "https://news.google.com/news?ned=us&topic=h&output=rss";
 
+      var finalFeedUrl = "https://api.rss2json.com/v1/api.json?rss_url=" + feedUrl;
+
       $.ajax({
 
         type: "GET",
