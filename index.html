@@ -1,116 +1,200 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Sissyphus69</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <script>
-        function showRSS(str) {
-          if (str.length==0) {
-            document.getElementById("rssOutput").innerHTML="";
-            return;
-          }
-          if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-          } else {  // code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-          }
-          xmlhttp.onreadystatechange=function() {
-            if (this.readyState==4 && this.status==200) {
-              console.log("feed response: " + this.responseText);
-              document.getElementById("rssOutput").innerHTML=this.responseText;
-            }
-            else{
-              console.log("feed status response: " + this.status + " " + this.responseText);
-              document.getElementById("rssOutput").innerHTML="RSS Feed Not Found &#9785";
-            }
-          }
-          xmlhttp.open("GET","getrss.php?q="+str,true);
-          xmlhttp.withCredentials = true;
-          xmlhttp.send();
+
+<head>
+  <meta charset="utf-8">
+  <title>Sissyphus69</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script>
+    function showRSS() {
+      var feedUrl = "https://news.google.com/news?ned=us&topic=h&output=rss";
+
+      $.ajax(feedUrl, {
+
+        accepts: {
+
+          xml: "application/rss+xml"
+
+        },
+
+        dataType: "xml",
+
+        success: function (data) {
+
+          //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
+
+          $(data).find("item").each(function () { // or "item" or whatever suits your feed
+
+            var el = $(this);
+
+            console.log("------------------------");
+
+            console.log("title      : " + el.find("title").text());
+
+            console.log("link       : " + el.find("link").text());
+
+            console.log("description: " + el.find("description").text());
+
+            document.getElementById("rssOutputText").innerText="Title: " + el.find("title").text();
+            document.getElementById("rssOutputDesc").innerText="Description: " + el.find("description").text();
+
+          });
+
         }
-        </script>
-    <style media="screen">
-      body { background:url('assets/a_quiet_mind.png'), no-repeat;background-size:cover; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+
+      });
+    }
+  </script>
+  <style media="screen">
+    body {
+      background: url('assets/a_quiet_mind.png'), no-repeat;
+      background-size: cover;
+      color: rgba(0, 0, 0, 0.87);
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #message {
+      background: white;
+      max-width: 360px;
+      margin: 100px auto 16px;
+      padding: 32px 24px;
+      border-radius: 3px;
+    }
+
+    #message h2 {
+      color: #ffa100;
+      font-weight: bold;
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+
+    #message h1 {
+      font-size: 22px;
+      font-weight: 300;
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0 0 16px;
+    }
+
+    #message p {
+      line-height: 140%;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+
+    #message a {
+      display: block;
+      text-align: center;
+      background: #039be5;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: white;
+      padding: 16px;
+      border-radius: 4px;
+    }
+
+    #message,
+    #message a {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    #load {
+      color: rgba(0, 0, 0, 0.4);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+
+      body,
+      #message {
+        margin-top: 0;
+        box-shadow: none;
       }
-      .topleft {
-        width: 45px;
-        height: 45px;
-        position: absolute;
-        top: 15px;
-        left: 30px;
-        font-size: 0px;
-        display: inline-block; 
-        padding: 16px; 
-        border-radius: 4px;
-        background: white;
-        /* Standard syntax */
-        /* transition-property: width;
+
+      body {
+        border-top: 16px solid #ffa100;
+      }
+    }
+
+    .topleft {
+      width: 45px;
+      height: 45px;
+      position: absolute;
+      top: 15px;
+      left: 30px;
+      font-size: 0px;
+      display: inline-block;
+      padding: 16px;
+      border-radius: 4px;
+      background: white;
+      /* Standard syntax */
+      /* transition-property: width;
         transition-duration: 1.5s; */
-        transition:all 1.5s;
-      }
-      .topright {
-        width: 600px;
-        height: max-content;
-        position: absolute;
-        top: 15px;
-        right: 30px;
-        padding: 16px; 
-        font-size: 20px;
-        font-family: Helvetica;
-        color: #000000;
-        text-align: center;  
-      }
-      .topleft:hover {
-        width: 180px;
-        font-size: 20px;
-        font-family: Helvetica;
-        color: #039be5;
-        text-align: center;  
-      }
-      img {
-        margin-right: 15px;
-        border-color: transparent;
-        border-radius: 50%;
-      }
-      .mylogo{
-        display: flex;
-        align-items: center;
-      }
-    </style>
-  </head>
-  <body onload="showRSS('Google')">
-    <div id="message">
-      <h2>Welcome One, Welcome All</h2>
-      <h1>The Absurd World Of Sissyphus</h1>
-      <p>Inside you will be seeing lot of small projects or code snippets which were made just for my amusement.</p>
-      <a target="_blank" href="onlinetexcheck.html">Katex Support Checker</a>
-      <br></br>
-      <a href="netspeedchecker.html">Check Net Speed</a>
-      <br></br>
-      <a target="_blank" href="https://github.com/anirudha-banerjee">Check my projects</a>
-      <br></br>
-      <a target="_blank" href="mailto:saheb.dgp89@gmail.com?Subject=Hello%20again">Mail me</a>
-    </div>
-    <div class="topleft">
-        <a href="blog/" target="_blank" class="mylogo">
-          <img src="assets/sissyphus.jpg" alt="Avatar" style="width:45px;height:45px" align="middle">
-          <font color="#039be5">Sissyphus</font>
-      </a>
-    </div>
-    <div class="topright" id="rssOutput">RSS-feed will be listed here...</div>      
+      transition: all 1.5s;
+    }
+
+    .topright {
+      width: 600px;
+      height: max-content;
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      padding: 16px;
+      font-size: 20px;
+      font-family: Helvetica;
+      color: #000000;
+      text-align: center;
+    }
+
+    .topleft:hover {
+      width: 180px;
+      font-size: 20px;
+      font-family: Helvetica;
+      color: #039be5;
+      text-align: center;
+    }
+
+    img {
+      margin-right: 15px;
+      border-color: transparent;
+      border-radius: 50%;
+    }
+
+    .mylogo {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body onload=showRSS()>
+  <div id="message">
+    <h2>Welcome One, Welcome All</h2>
+    <h1>The Absurd World Of Sissyphus</h1>
+    <p>Inside you will be seeing lot of small projects or code snippets which were made just for my amusement.</p>
+    <a target="_blank" href="onlinetexcheck.html">Katex Support Checker</a>
+    <br></br>
+    <a href="netspeedchecker.html">Check Net Speed</a>
+    <br></br>
+    <a target="_blank" href="https://github.com/anirudha-banerjee">Check my projects</a>
+    <br></br>
+    <a target="_blank" href="mailto:saheb.dgp89@gmail.com?Subject=Hello%20again">Mail me</a>
   </div>
-  </body>
+  <div class="topleft">
+    <a href="blog/" target="_blank" class="mylogo">
+      <img src="assets/sissyphus.jpg" alt="Avatar" style="width:45px;height:45px" align="middle">
+      <font color="#039be5">Sissyphus</font>
+    </a>
+  </div>
+  <div class="topright" id="rssOutput">RSS-feed will be listed here...
+    <br></br>
+    <div id="rssOutputTitle"></div>
+    <div id="rssOutputDesc"></div>
+  </div>
+  </div>
+</body>
+
 </html>
