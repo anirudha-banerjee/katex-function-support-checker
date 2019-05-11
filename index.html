@@ -16,43 +16,21 @@
 
         url: feedUrl,
 
-        accepts: {
-
-          xml: "application/rss+xml"
-
-        },
-
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "origin, content-type, accept"
-        },
-
         processData: true,
 
-        dataType: "xml",
+        dataType: "jsonp",
 
         crossDomain: true,
 
         success: function (data) {
 
+          console.log(data.feed.description);
+          console.log(data);
+
+          document.getElementById("rssOutputText").innerText = "Title: " + data.feed.title;
+          document.getElementById("rssOutputDesc").innerText = "Description: " + data.feed.description;
+
           //Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
-
-          $(data).find("item").each(function () { // or "item" or whatever suits your feed
-
-            var el = $(this);
-
-            console.log("------------------------");
-
-            console.log("title      : " + el.find("title").text());
-
-            console.log("link       : " + el.find("link").text());
-
-            console.log("description: " + el.find("description").text());
-
-            document.getElementById("rssOutputText").innerText = "Title: " + el.find("title").text();
-            document.getElementById("rssOutputDesc").innerText = "Description: " + el.find("description").text();
-
-          });
 
         }
 
