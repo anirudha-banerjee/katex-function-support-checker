@@ -57,11 +57,9 @@
         border-radius: 4px;
         background: white;
         /* Standard syntax */
-        transition-property: width;
-        transition-duration: 1.5s;
-        @include hideTapHighlightColor();
-        @include hardwareAccel();
-        @include improveAntiAlias();
+        /* transition-property: width;
+        transition-duration: 1.5s; */
+        transition:all 1.5s;
       }
       .topright {
         width: 600px;
@@ -76,7 +74,7 @@
         text-align: center;  
       }
       .topleft:hover {
-        width: 200px;
+        width: 180px;
         font-size: 20px;
         font-family: Helvetica;
         color: #039be5;
@@ -86,6 +84,10 @@
         margin-right: 15px;
         border-color: transparent;
         border-radius: 50%;
+      }
+      .mylogo{
+        display: flex;
+        align-items: center;
       }
     </style>
   </head>
@@ -103,8 +105,9 @@
       <a target="_blank" href="mailto:saheb.dgp89@gmail.com?Subject=Hello%20again">Mail me</a>
     </div>
     <div class="topleft">
-        <a href="blog/" target="_blank">
-          <img src="assets/sissyphus.jpg" alt="Avatar" style="width:45px" align="middle"><font color="#039be5">Sissyphus</font>
+        <a href="blog/" target="_blank" class="mylogo">
+          <img src="assets/sissyphus.jpg" alt="Avatar" style="width:45px;height:45px" align="middle">
+          <font color="#039be5">Sissyphus</font>
       </a>
     </div>
     <div class="topright" id="rssOutput">RSS-feed will be listed here...</div>      
