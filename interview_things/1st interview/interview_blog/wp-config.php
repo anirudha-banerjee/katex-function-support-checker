@@ -23,7 +23,7 @@
 define('DB_NAME', 'interview');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'dbUser');
 
 /** MySQL database password */
 define('DB_PASSWORD', '');
